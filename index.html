@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Friday Alternative – Warrington's Indie & Alternative Club Night</title>
+  <meta name="description" content="Warrington's most eclectic indie & alternative club night. Loud music. Dark room. No fillers." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #080808;
+      --black2: #111111;
+      --pink:   #FF2D78;
+      --pink2:  #FF5599;
+      --white:  #F0EDE8;
+      --grey:   #888;
+      --border: #222;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Space Mono', monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Override grey text globally to be more readable */
+    :root {
+      --grey: #aaa;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1000;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(8,8,8,0.95);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem; letter-spacing: 0.12em;
+      color: var(--white); text-decoration: none;
+      text-shadow:
+        0 0 6px rgba(255,45,120,0.9),
+        0 0 20px rgba(255,45,120,0.6),
+        0 0 50px rgba(255,45,120,0.3);
+    }
+    .nav-logo span {
+      color: var(--pink);
+      text-shadow:
+        0 0 6px rgba(255,45,120,1),
+        0 0 20px rgba(255,45,120,0.8),
+        0 0 50px rgba(255,45,120,0.5),
+        0 0 100px rgba(255,45,120,0.2);
+    }
+
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: #bbb; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--pink); }
+
+    .nav-ticket {
+      background: var(--pink); color: var(--black) !important;
+      padding: 0.45rem 1.1rem; font-weight: 700 !important;
+      letter-spacing: 0.1em !important; color: var(--black);
+      transition: background 0.2s !important;
+    }
+    .nav-ticket:hover { background: var(--pink2) !important; color: var(--black) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 7rem 2.5rem 3rem;
+      position: relative; overflow: hidden;
+    }
+
+    /* Photo placeholder — swap src when you have a photo */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: var(--black2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.35;
+      filter: grayscale(40%) contrast(1.2);
+    }
+    .hero-bg-placeholder {
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        #111 0px, #111 10px,
+        #0d0d0d 10px, #0d0d0d 20px
+      );
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.5rem;
+    }
+    .hero-bg-placeholder span {
+      font-size: 0.7rem; letter-spacing: 0.2em; color: #333; text-transform: uppercase;
+    }
+
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 60%, transparent 100%);
+    }
+
+    .hero-inner { position: relative; max-width: 1060px; margin: 0 auto; width: 100%; }
+
+    .hero-kicker {
+      font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-kicker::before {
+      content: ''; display: inline-block;
+      width: 32px; height: 1px; background: var(--pink);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 13vw, 11rem);
+      line-height: 0.88;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    h1 .alt {
+      color: var(--pink);
+      text-shadow:
+        0 0 6px rgba(255,45,120,1),
+        0 0 20px rgba(255,45,120,0.8),
+        0 0 60px rgba(255,45,120,0.5),
+        0 0 120px rgba(255,45,120,0.2);
+    }
+
+    .hero-tagline {
+      font-size: 0.92rem; letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 2.5rem;
+      white-space: nowrap; line-height: 1.8;
+    }
+
+    .hero-pills {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .pill {
+      border: 1px solid #555;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--white);
+    }
+    .pill-hot { border-color: var(--pink); color: var(--pink); }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      background: var(--pink);
+      padding: 0.7rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      animation: marquee 38.5s linear infinite;
+    }
+    .marquee-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem; letter-spacing: 0.2em;
+      color: var(--black);
+      padding: 0 2rem;
+    }
+    .marquee-track span.sep { color: rgba(0,0,0,0.35); }
+
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 2.5rem; }
+    .inner { max-width: 1060px; margin: 0 auto; width: 100%; }
+
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .section-label::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1px; background: var(--pink);
+    }
+
+    h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.9; letter-spacing: 0.04em;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── NEXT DATE ── */
+    #dates { background: var(--black); }
+
+    .next-date-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      align-items: start;
+    }
+
+    .date-stamp {
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+      position: relative;
+    }
+    .date-stamp::before {
+      content: 'NEXT DATE';
+      position: absolute; top: -0.6rem; left: 1.5rem;
+      background: var(--black);
+      font-size: 0.62rem; letter-spacing: 0.2em;
+      color: var(--pink); padding: 0 0.5rem;
+    }
+
+    .date-tbc {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.9; color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .date-tbc span { color: var(--pink); }
+
+    .date-meta {
+      font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 2rem; line-height: 2;
+    }
+
+    .btn-ticket {
+      display: inline-block;
+      background: var(--pink); color: var(--black);
+      font-family: 'Space Mono', monospace;
+      font-weight: 700; font-size: 0.8rem; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.85rem 2rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-ticket:hover { background: var(--pink2); transform: translateY(-2px); }
+
+    .btn-notify {
+      display: inline-block;
+      border: 1px solid #555; color: #ccc;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      padding: 0.85rem 2rem; margin-left: 1rem;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: pointer; background: none;
+    }
+    .btn-notify:hover { border-color: var(--pink); color: var(--pink); }
+
+    .date-info {
+      font-size: 1rem; color: var(--white); line-height: 2;
+    }
+    .date-info strong { color: var(--white); display: block; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; margin-top: 1.25rem; }
+    .date-info strong:first-child { margin-top: 0; }
+
+    /* ── PHOTO GRID ── */
+    #photos { background: var(--black2); }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 4px;
+      margin-top: 2rem;
+    }
+
+    .photo-cell {
+      background: #1a1a1a;
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    /* First photo spans 2 cols and 2 rows */
+    .photo-cell:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    .photo-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: grayscale(30%) contrast(1.1);
+      transition: filter 0.3s, transform 0.4s;
+    }
+    .photo-cell:hover img { filter: grayscale(0%) contrast(1); transform: scale(1.03); }
+
+    .photo-placeholder {
+      width: 100%; height: 100%; min-height: 160px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.4rem;
+      background: repeating-linear-gradient(
+        -45deg,
+        #141414 0px, #141414 8px,
+        #111 8px, #111 16px
+      );
+    }
+    .photo-placeholder span {
+      font-size: 0.62rem; letter-spacing: 0.18em; color: #2a2a2a; text-transform: uppercase;
+    }
+    .photo-placeholder .ph-icon { font-size: 1.5rem; opacity: 0.15; }
+
+    /* ── WHAT TO EXPECT ── */
+    #about { background: var(--black); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1rem; color: var(--white); line-height: 2;
+      margin-bottom: 1.25rem;
+    }
+    .about-text p strong { color: var(--white); }
+
+    .three-words {
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .word-row {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.88; letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border);
+      padding: 0.4rem 0;
+      display: flex; align-items: baseline; gap: 1rem;
+    }
+    .word-row:last-child { border-bottom: none; }
+    .word-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem; color: var(--pink);
+      letter-spacing: 0.1em; margin-bottom: 0.2rem;
+      align-self: center;
+    }
+
+    /* ── MAILING LIST ── */
+    #mailing { background: var(--pink); }
+    #mailing .inner { text-align: center; }
+
+    #mailing h2 { color: var(--black); margin-bottom: 0.5rem; }
+    #mailing p { font-size: 0.78rem; color: rgba(0,0,0,0.6); letter-spacing: 0.08em; margin-bottom: 2rem; text-transform: uppercase; }
+
+    .email-form {
+      display: flex; max-width: 480px; margin: 0 auto; gap: 0;
+    }
+    .email-form input {
+      flex: 1; padding: 0.9rem 1.25rem;
+      background: var(--black); border: none; outline: none;
+      color: var(--white); font-family: 'Space Mono', monospace;
+      font-size: 0.85rem;
+    }
+    .email-form input::placeholder { color: #444; }
+    .email-form button {
+      background: var(--black); color: var(--pink);
+      border: none; cursor: pointer;
+      font-family: 'Space Mono', monospace;
+      font-weight: 700; font-size: 0.78rem; letter-spacing: 0.12em;
+      text-transform: uppercase; padding: 0.9rem 1.5rem;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .email-form button:hover { background: #111; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 2rem 2.5rem;
+    }
+    footer .inner {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem; letter-spacing: 0.12em;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--pink); }
+    footer p { font-size: 0.65rem; color: #444; letter-spacing: 0.1em; text-transform: uppercase; }
+    .footer-social { display: flex; gap: 1.25rem; }
+    .footer-social a {
+      font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: #444; text-decoration: none; transition: color 0.2s;
+    }
+    .footer-social a:hover { color: var(--pink); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      nav { padding: 0.85rem 1.25rem; }
+      .nav-links { display: none; }
+      .hero { padding: 6rem 1.25rem 2.5rem; }
+      section { padding: 4rem 1.25rem; }
+      .next-date-block { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .photo-grid { grid-template-columns: repeat(2, 1fr); }
+      .photo-cell:first-child { grid-column: span 2; }
+      footer { padding: 1.5rem 1.25rem; }
+      footer .inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .email-form { flex-direction: column; }
+      .btn-notify { margin-left: 0; margin-top: 0.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">The <span>Friday</span> Alternative</a>
+    <div class="nav-links">
+      <a href="#dates">Dates</a>
+      <a href="#photos">Photos</a>
+      <a href="#about">About</a>
+      <a href="#mailing" class="nav-ticket">Get updates</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg">
+      <!-- To add a hero photo: replace this div with <img src="your-photo.jpg" alt="The Friday Alternative"> -->
+      <div class="hero-bg-placeholder"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <p class="hero-kicker">Warrington's most eclectic club night</p>
+      <h1>THE<br>FRIDAY<br><span class="alt">ALTER<br>NATIVE</span></h1>
+      <p class="hero-tagline">Loud music &nbsp;·&nbsp; Dark room &nbsp;·&nbsp; No filler</p>
+      <div class="hero-pills">
+        <span class="pill pill-hot">Next date — TBC</span>
+        <span class="pill">Indie</span>
+        <span class="pill">Alternative</span>
+        <span class="pill">Post-punk</span>
+        <span class="pill">Britpop</span>
+        <span class="pill">Electronic</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Sleaford Mods</span><span class="sep">/</span>
+      <span>The K's</span><span class="sep">/</span>
+      <span>Talking Heads</span><span class="sep">/</span>
+      <span>IDLES</span><span class="sep">/</span>
+      <span>Blur</span><span class="sep">/</span>
+      <span>Fontaines DC</span><span class="sep">/</span>
+      <span>The Clash</span><span class="sep">/</span>
+      <span>Wolf Alice</span><span class="sep">/</span>
+      <span>Libertines</span><span class="sep">/</span>
+      <span>Oasis</span><span class="sep">/</span>
+      <span>Wet Leg</span><span class="sep">/</span>
+      <span>The Strokes</span><span class="sep">/</span>
+      <span>LCD Soundsystem</span><span class="sep">/</span>
+      <span>Pixies</span><span class="sep">/</span>
+      <span>Nirvana</span><span class="sep">/</span>
+      <span>Deftones</span><span class="sep">/</span>
+      <span>The Cure</span><span class="sep">/</span>
+      <span>New Order</span><span class="sep">/</span>
+      <span>Pulp</span><span class="sep">/</span>
+      <span>Radiohead</span><span class="sep">/</span>
+      <span>Sonic Youth</span><span class="sep">/</span>
+      <span>My Bloody Valentine</span><span class="sep">/</span>
+      <span>Chemical Brothers</span><span class="sep">/</span>
+      <span>Orbital</span><span class="sep">/</span>
+      <span>Rage Against The Machine</span><span class="sep">/</span>
+      <span>Turnstile</span><span class="sep">/</span>
+      <span>Viagra Boys</span><span class="sep">/</span>
+      <span>Yard Act</span><span class="sep">/</span>
+      <span>English Teacher</span><span class="sep">/</span>
+      <!-- duplicate for seamless loop -->
+      <span>Sleaford Mods</span><span class="sep">/</span>
+      <span>The K's</span><span class="sep">/</span>
+      <span>Talking Heads</span><span class="sep">/</span>
+      <span>IDLES</span><span class="sep">/</span>
+      <span>Blur</span><span class="sep">/</span>
+      <span>Fontaines DC</span><span class="sep">/</span>
+      <span>The Clash</span><span class="sep">/</span>
+      <span>Wolf Alice</span><span class="sep">/</span>
+      <span>Libertines</span><span class="sep">/</span>
+      <span>Oasis</span><span class="sep">/</span>
+      <span>Wet Leg</span><span class="sep">/</span>
+      <span>The Strokes</span><span class="sep">/</span>
+      <span>LCD Soundsystem</span><span class="sep">/</span>
+      <span>Pixies</span><span class="sep">/</span>
+      <span>Nirvana</span><span class="sep">/</span>
+      <span>Deftones</span><span class="sep">/</span>
+      <span>The Cure</span><span class="sep">/</span>
+      <span>New Order</span><span class="sep">/</span>
+      <span>Pulp</span><span class="sep">/</span>
+      <span>Radiohead</span><span class="sep">/</span>
+      <span>Sonic Youth</span><span class="sep">/</span>
+      <span>My Bloody Valentine</span><span class="sep">/</span>
+      <span>Chemical Brothers</span><span class="sep">/</span>
+      <span>Orbital</span><span class="sep">/</span>
+      <span>Rage Against The Machine</span><span class="sep">/</span>
+      <span>Turnstile</span><span class="sep">/</span>
+      <span>Viagra Boys</span><span class="sep">/</span>
+      <span>Yard Act</span><span class="sep">/</span>
+      <span>English Teacher</span><span class="sep">/</span>
+    </div>
+  </div>
+
+  <!-- NEXT DATE -->
+  <section id="dates">
+    <div class="inner">
+      <p class="section-label">Upcoming</p>
+      <div class="next-date-block">
+        <div class="date-stamp">
+          <div class="date-tbc">DATE<br><span>TBC</span></div>
+          <div class="date-meta">
+            Keep your eyes peeled<br>
+            Updates via Instagram &amp; mailing list
+          </div>
+          <div>
+            <!-- When a date is confirmed, swap the button below href to a ticket link -->
+            <button class="btn-notify" onclick="document.getElementById('mailing').scrollIntoView({behavior:'smooth'})">
+              Notify me →
+            </button>
+          </div>
+        </div>
+        <div class="date-info">
+          <strong>What to expect</strong>
+          An eclectic mix of indie &amp; alternative across the decades. No cheese, no fillers — just music that matters.
+          <strong>Music policy</strong>
+          80s indie classics &amp; post-punk · 90s grunge &amp; Britpop · 00s anthems · Modern alt &amp; post-punk · Electronic &amp; dance · Hip-hop
+          <strong>Who's playing</strong>
+          Resident DJs + guests. Local selectors who actually care about the records.
+          <strong>Doors</strong>
+          TBC — follow on Instagram for updates
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section id="photos">
+    <div class="inner">
+      <p class="section-label">From the floor</p>
+      <h2>PAST<br>NIGHTS</h2>
+      <!-- Photo grid: replace .photo-placeholder divs with <img> tags when you have photos -->
+      <!-- To add a photo: replace the inner div with <img src="photo.jpg" alt="..."> -->
+      <div class="photo-grid">
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Your photo</span>
+          </div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Your photo</span>
+          </div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Your photo</span>
+          </div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Your photo</span>
+          </div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Your photo</span>
+          </div>
+        </div>
+        <div class="photo-cell">
+          <div class="photo-placeholder">
+            <span class="ph-icon">📷</span>
+            <span>Your photo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="inner">
+      <p class="section-label">What we're about</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            <strong>The Friday Alternative</strong> is Warrington's only proper indie and alternative club night. Not a room in the corner of a pub. Not a playlist on shuffle. A real night, with people who care about music.
+          </p>
+          <p>
+            We play everything from <strong>80s post-punk</strong> and <strong>Britpop</strong> to <strong>modern alt</strong>, post-punk revival, electronic, and hip-hop — as long as it's good, it's on.
+          </p>
+          <p>
+            Resident DJs plus hand-picked guests. Dark room. Loud soundsystem. The kind of crowd that sings every word and argues about B-sides.
+          </p>
+        </div>
+        <div class="three-words">
+          <div class="word-row">
+            <span class="word-num">01</span>
+            LOUD
+          </div>
+          <div class="word-row">
+            <span class="word-num">02</span>
+            DARK
+          </div>
+          <div class="word-row">
+            <span class="word-num">03</span>
+            <span style="color:var(--pink)">NO FILLERS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAILING LIST -->
+  <section id="mailing">
+    <div class="inner">
+      <h2>STAY IN<br>THE LOOP</h2>
+      <p>Date announcements · Ticket links · Nothing else</p>
+      <div class="email-form">
+        <input type="email" id="email-input" placeholder="your@email.com" autocomplete="email" />
+        <button onclick="handleSignup()">Sign up</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="inner">
+      <div>
+        <div class="footer-logo">The <span>Friday</span> Alternative</div>
+        <p style="margin-top:0.4rem;">Warrington's most eclectic indie &amp; alternative club night</p>
+      </div>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSignup() {
+      const email = document.getElementById('email-input').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      // TODO: hook up to Mailchimp / Substack / EmailOctopus etc
+      alert(`You're on the list! We'll be in touch when the next date drops.`);
+      document.getElementById('email-input').value = '';
+    }
+  </script>
+
+</body>
+</html>
