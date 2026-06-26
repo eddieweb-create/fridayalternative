@@ -97,6 +97,23 @@
       position: relative; overflow: hidden;
     }
 
+    /* Tighter on mobile — no massive gap above the text */
+    @media (max-width: 760px) {
+      .hero {
+        min-height: auto;
+        padding: 5rem 1.25rem 2.5rem;
+        justify-content: flex-start;
+      }
+      /* Tone down neon at small sizes — less blur spread */
+      h1 .alt {
+        text-shadow:
+          0 0 4px rgba(255,45,120,1),
+          0 0 12px rgba(255,45,120,0.7),
+          0 0 28px rgba(255,45,120,0.3);
+      }
+      .hero-tagline { white-space: normal; }
+    }
+
     /* Photo placeholder — swap src when you have a photo */
     .hero-bg {
       position: absolute; inset: 0;
@@ -417,8 +434,6 @@
     @media (max-width: 760px) {
       nav { padding: 0.85rem 1.25rem; }
       .nav-links { display: none; }
-      .hero { padding: 6rem 1.25rem 2.5rem; }
-      .hero-tagline { white-space: normal; }
       section { padding: 4rem 1.25rem; }
       .next-date-block { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
