@@ -200,7 +200,7 @@
     }
 
     /* ── SECTIONS ── */
-    section { padding: 5rem 2.5rem; }
+    section { padding: 3rem 2.5rem; }
     .inner { max-width: 1060px; margin: 0 auto; width: 100%; }
 
     .section-label {
@@ -283,53 +283,50 @@
     .date-info strong { color: var(--white); display: block; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.25rem; margin-top: 1.25rem; }
     .date-info strong:first-child { margin-top: 0; }
 
-    /* ── PHOTO GRID ── */
-    #photos { background: var(--black2); }
+    /* ── PHOTO PILE ── */
+    #photos { background: var(--black2); padding-top: 1.5rem; padding-bottom: 5rem; }
+    #about { background: var(--black); padding-top: 1.5rem; }
 
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto auto;
-      gap: 4px;
-      margin-top: 2rem;
-    }
-
-    .photo-cell {
-      background: #1a1a1a;
-      aspect-ratio: 1;
-      overflow: hidden;
+    .photo-pile {
       position: relative;
+      width: 100%;
+      min-height: 680px;
+      margin-top: 3rem;
+    }
+
+    .photo-card {
+      position: absolute;
+      background: #1a1a1a;
+      padding: 8px 8px 32px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7), 0 2px 6px rgba(0,0,0,0.5);
       cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
+      z-index: 1;
+    }
+    .photo-card:hover {
+      transform: scale(1.08) rotate(0deg) !important;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+      z-index: 50;
+    }
+    .photo-card img {
+      display: block;
+      width: 100%; height: 100%;
+      object-fit: cover;
     }
 
-    /* First photo spans 2 cols and 2 rows */
-    .photo-cell:first-child {
-      grid-column: span 2;
-      grid-row: span 2;
-      aspect-ratio: auto;
-    }
-
-    .photo-cell img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: grayscale(30%) contrast(1.1);
-      transition: filter 0.3s, transform 0.4s;
-    }
-    .photo-cell:hover img { filter: grayscale(0%) contrast(1); transform: scale(1.03); }
-
-    .photo-placeholder {
-      width: 100%; height: 100%; min-height: 160px;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 0.4rem;
-      background: repeating-linear-gradient(
-        -45deg,
-        #141414 0px, #141414 8px,
-        #111 8px, #111 16px
-      );
-    }
-    .photo-placeholder span {
-      font-size: 0.62rem; letter-spacing: 0.18em; color: #2a2a2a; text-transform: uppercase;
-    }
-    .photo-placeholder .ph-icon { font-size: 1.5rem; opacity: 0.15; }
+    /* Colour-sorted scattered positions — 12 photos, red (left) → green (right) */
+    .pc-1  { left:  0%;   top:  20px;  width: 240px; height: 240px; transform: rotate(-4deg); }
+    .pc-2  { left:  4%;   top: 230px;  width: 200px; height: 200px; transform: rotate( 3deg); }
+    .pc-3  { left: 16%;   top:  40px;  width: 220px; height: 220px; transform: rotate( 6deg); }
+    .pc-4  { left: 17%;   top: 270px;  width: 230px; height: 230px; transform: rotate(-2deg); }
+    .pc-5  { left: 32%;   top:   0px;  width: 250px; height: 250px; transform: rotate(-5deg); }
+    .pc-6  { left: 34%;   top: 255px;  width: 215px; height: 215px; transform: rotate( 4deg); }
+    .pc-7  { left: 49%;   top:  50px;  width: 225px; height: 225px; transform: rotate( 2deg); }
+    .pc-8  { left: 50%;   top: 280px;  width: 210px; height: 210px; transform: rotate(-6deg); }
+    .pc-9  { left: 65%;   top:  15px;  width: 235px; height: 235px; transform: rotate( 5deg); }
+    .pc-10 { left: 66%;   top: 260px;  width: 220px; height: 220px; transform: rotate(-3deg); }
+    .pc-11 { left: 80%;   top:  35px;  width: 215px; height: 215px; transform: rotate(-7deg); }
+    .pc-12 { left: 80%;   top: 265px;  width: 225px; height: 225px; transform: rotate( 4deg); }
 
     /* ── WHAT TO EXPECT ── */
     #about { background: var(--black); }
@@ -421,15 +418,30 @@
       nav { padding: 0.85rem 1.25rem; }
       .nav-links { display: none; }
       .hero { padding: 6rem 1.25rem 2.5rem; }
+      .hero-tagline { white-space: normal; }
       section { padding: 4rem 1.25rem; }
       .next-date-block { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .photo-grid { grid-template-columns: repeat(2, 1fr); }
-      .photo-cell:first-child { grid-column: span 2; }
       footer { padding: 1.5rem 1.25rem; }
       footer .inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
       .email-form { flex-direction: column; }
       .btn-notify { margin-left: 0; margin-top: 0.75rem; }
+
+      /* Pile → simple 2-col grid on mobile */
+      .photo-pile { min-height: auto; }
+      .photo-card {
+        position: relative !important;
+        left: auto !important; top: auto !important;
+        width: 100% !important; height: auto !important;
+        transform: none !important;
+        display: inline-block;
+      }
+      .photo-pile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .photo-card img { width: 100%; height: 160px; object-fit: cover; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -576,43 +588,20 @@
       <h2>PAST<br>NIGHTS</h2>
       <!-- Photo grid: replace .photo-placeholder divs with <img> tags when you have photos -->
       <!-- To add a photo: replace the inner div with <img src="photo.jpg" alt="..."> -->
-      <div class="photo-grid">
-        <div class="photo-cell">
-          <div class="photo-placeholder">
-            <span class="ph-icon">📷</span>
-            <span>Your photo</span>
-          </div>
-        </div>
-        <div class="photo-cell">
-          <div class="photo-placeholder">
-            <span class="ph-icon">📷</span>
-            <span>Your photo</span>
-          </div>
-        </div>
-        <div class="photo-cell">
-          <div class="photo-placeholder">
-            <span class="ph-icon">📷</span>
-            <span>Your photo</span>
-          </div>
-        </div>
-        <div class="photo-cell">
-          <div class="photo-placeholder">
-            <span class="ph-icon">📷</span>
-            <span>Your photo</span>
-          </div>
-        </div>
-        <div class="photo-cell">
-          <div class="photo-placeholder">
-            <span class="ph-icon">📷</span>
-            <span>Your photo</span>
-          </div>
-        </div>
-        <div class="photo-cell">
-          <div class="photo-placeholder">
-            <span class="ph-icon">📷</span>
-            <span>Your photo</span>
-          </div>
-        </div>
+      <!-- Photos sorted warm reds (left) → cool greens (right) -->
+      <div class="photo-pile">
+        <div class="photo-card pc-1">  <img src="IMG_7886.jpeg"                                alt="The Friday Alternative"></div>
+        <div class="photo-card pc-2">  <img src="IMG_7904.jpeg"                                alt="The Friday Alternative"></div>
+        <div class="photo-card pc-3">  <img src="dbe85a1b-0115-4a2e-bfbf-16abd24875a9.jpeg"   alt="The Friday Alternative"></div>
+        <div class="photo-card pc-4">  <img src="b97d784a-396c-4850-a5a1-d1c0e1c0b5c0.jpeg"   alt="The Friday Alternative"></div>
+        <div class="photo-card pc-5">  <img src="416d2c71-e88a-4e94-9fad-8a4ba8c2e078.jpeg"   alt="The Friday Alternative"></div>
+        <div class="photo-card pc-6">  <img src="IMG_1243.png"                                 alt="The Friday Alternative"></div>
+        <div class="photo-card pc-7">  <img src="5260485B-6156-4856-8C45-0233994EF0E9.jpeg"   alt="The Friday Alternative"></div>
+        <div class="photo-card pc-8">  <img src="IMG_1226.jpeg"                                alt="The Friday Alternative"></div>
+        <div class="photo-card pc-9">  <img src="IMG_1236.jpeg"                                alt="The Friday Alternative"></div>
+        <div class="photo-card pc-10"> <img src="7ef378a6-1458-4687-b58b-b3d012b92d4c.jpeg"   alt="The Friday Alternative"></div>
+        <div class="photo-card pc-11"> <img src="IMG_0773.jpeg"                                alt="The Friday Alternative"></div>
+        <div class="photo-card pc-12"> <img src="IMG_0775.jpeg"                                alt="The Friday Alternative"></div>
       </div>
     </div>
   </section>
