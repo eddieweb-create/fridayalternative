@@ -84,10 +84,16 @@
     .nav-ticket {
       background: var(--pink); color: var(--black) !important;
       padding: 0.45rem 1.1rem; font-weight: 700 !important;
-      letter-spacing: 0.1em !important; color: var(--black);
+      letter-spacing: 0.1em !important;
       transition: background 0.2s !important;
     }
     .nav-ticket:hover { background: var(--pink2) !important; color: var(--black) !important; }
+    .nav-ticket-gig {
+      background: var(--black) !important;
+      border: 1px solid var(--pink);
+      color: var(--pink) !important;
+    }
+    .nav-ticket-gig:hover { background: var(--pink) !important; color: var(--black) !important; }
 
     /* ── HERO ── */
     .hero {
@@ -427,10 +433,52 @@
     }
     .footer-social a:hover { color: var(--pink); }
 
-    /* ── RESPONSIVE ── */
+    /* ── HERO TICKET BUTTON ── */
+    .hero-ticket {
+      position: absolute;
+      top: 50%;
+      left: 58%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .hero-ticket a {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--pink); color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: 0.18em;
+      text-decoration: none;
+      padding: 0.85rem 2rem;
+      border-radius: 4px;
+      box-shadow: 0 0 24px rgba(255,45,120,0.5), 0 4px 16px rgba(0,0,0,0.6);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    .hero-ticket a:hover {
+      background: var(--pink2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 40px rgba(255,45,120,0.8), 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 760px) {
+      .hero-ticket { display: none; }
+    }
+
+    /* ── FLOATING TICKET BUTTON ── */
     @media (max-width: 760px) {
       nav { padding: 0.85rem 1.25rem; }
       .nav-links { display: none; }
+      /* Keep the ticket button visible on mobile */
+      .nav-links .nav-ticket-gig {
+        display: inline-block;
+      }
+      .nav-links:has(.nav-ticket-gig) {
+        display: flex;
+        gap: 0;
+      }
+      /* Hide everything in nav-links except the ticket button */
+      .nav-links a:not(.nav-ticket-gig) { display: none; }
+      .nav-links .nav-ticket-gig { display: inline-block; }
       section { padding: 4rem 1.25rem; }
       .next-date-block { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -470,6 +518,7 @@
       <a href="#dates">Dates</a>
       <a href="#photos">Photos</a>
       <a href="#about">About</a>
+      <a href="https://www.skiddle.com/e/42612191" target="_blank" rel="noopener" class="nav-ticket nav-ticket-gig">Get tickets</a>
       <a href="#mailing" class="nav-ticket">Get updates</a>
     </div>
   </nav>
@@ -486,13 +535,17 @@
       <h1>THE<br>FRIDAY<br><span class="alt">ALTER<br>NATIVE</span></h1>
       <p class="hero-tagline">Loud music &nbsp;·&nbsp; Dark room &nbsp;·&nbsp; No filler</p>
       <div class="hero-pills">
-        <span class="pill pill-hot">Next date — Friday 4th September</span>
+        <span class="pill pill-hot">Next date — Fri 4th September</span>
         <span class="pill">Indie</span>
         <span class="pill">Alternative</span>
         <span class="pill">Post-punk</span>
         <span class="pill">Britpop</span>
         <span class="pill">Electronic</span>
       </div>
+    </div>
+    <!-- Hero ticket button — sits in the open space to the right of the title -->
+    <div class="hero-ticket">
+      <a href="https://www.skiddle.com/e/42612191" target="_blank" rel="noopener">🎟 Get tickets</a>
     </div>
   </header>
 
@@ -570,13 +623,10 @@
           <div class="date-tbc">FRI 4TH<br><span>SEPT</span></div>
           <div class="date-meta">
             Friday 4th September<br>
-Brickhaus, Warrington
+            Brickhaus, Warrington
           </div>
           <div>
-            <!-- When a date is confirmed, swap the button below href to a ticket link -->
-            <button class="btn-notify" onclick="document.getElementById('mailing').scrollIntoView({behavior:'smooth'})">
-              Tickets on sale soon
-            </button>
+            <a href="https://www.skiddle.com/e/42612191" target="_blank" rel="noopener" class="btn-ticket">Get tickets →</a>
           </div>
         </div>
         <div class="date-info">
@@ -586,8 +636,8 @@ Brickhaus, Warrington
           80s indie classics &amp; post-punk · 90s grunge &amp; Britpop · 00s anthems · Modern alt &amp; post-punk · Electronic &amp; dance · Hip-hop
           <strong>Who's playing</strong>
           Resident DJs + guests. Local selectors who actually care about the records.
-          <strong>Doors</strong>
-          Brickhaus, Warrington — tickets on sale soon
+          <strong>Venue</strong>
+          Brickhaus, Warrington — <a href="https://www.skiddle.com/e/42612191" target="_blank" rel="noopener" style="color:var(--pink); text-decoration:none;">get tickets here</a>
         </div>
       </div>
     </div>
