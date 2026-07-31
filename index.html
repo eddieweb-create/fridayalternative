@@ -371,6 +371,7 @@
       <a href="#dates">Dates</a>
       <a href="#photos">Photos</a>
       <a href="#about">About</a>
+      <a href="#suggestions">Suggestions</a>
       <a href="https://www.skiddle.com/e/42612191" target="_blank" rel="noopener" class="skiddle-btn skiddle-btn-sm nav-ticket-gig">
         <div class="skiddle-icon">
           <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAA+CAYAAAClZHIhAAADtUlEQVR4nO2ZS2xMURjH/4dzi4SiGY9KRYlXIoqNS4IVCSI2jY0EqbemRCJy0UpIPVIkHiX1TiwsJMQjRCwsCIuJdOHVVNMmVSWk6lHidU/yWYwZnc553Zk7JeG/nPPd7/ud7zvn3PPdAf7rL5BfdooAgP8pAOF6hAeN+CMQwvWo62/dBuEX7yfW+lY61i0QwvUICoCsQ8hS320QYkY5wRfW9qFC+EsOE2t4hSAAoUII1yM0vFIHilaxhF3YEMa6Tx0DXr2S6UzShhBzdhI6vijHaehAOFe3METNvgJDiNU1hIfN0AHEU2+rQBDC9WIAIQUPBGGs+7Sx4IdXGAHErArCdz8YhL9wL7E3H9QGw/LAL3vGuvuLDxJreg0ZgBLCLz1JrLYJ0ADYpl64HqHptdYmBUK4HqG2KZzglkpAGB+aPg780HJz3Q1bVwuhVEEE/NJmY93F8qOEpy+UW5cKB8O5sIkFPjF5tMrqsBGuFwOQqVcO+N1KrR8pRFh1t/UjhYg7VznxF+wh1vYx4+BaiCSY3jngdyoZELsdsweNgApgUiH4yXWBT83fEEWFwKPmVItvP36n/dftuKtoUH8417dZrR+ZUqjF/F2E9k/WDqzXj8Ivj1YxpYOwFp1YVUPSDNtA2MCQw+Hc253xRKxm4684RuxJi9pgdD74+Y0JX0GzaL2S/UUHiLW0aW0okgv2tsM6uDWE2HCGEG0wmWlFE0fAOV2qjKWF0K4Hw6wBAMMj4Bc3GycqNRAzKwg/5BcQIDmtfslRYnWK9wYATBgOfrZMC5I0aKq7bluqrm42z9qt6CmjwI+vydpLTQtBkVw4N8pDv0khrx/4zYqEXyWE9Yk4bxfhnf0x31nxXZN+B7b0COHZSygBOrV/qiyxx88BpNkGCteLAUhEQwbAubY16Y2qa4YDQ2T6UuPRKpboQYJCBDk3dPJLqonVtaY+r32oeB+x1naoAKhoBJxT6uO4s4TrESQAWojYx652+eCAvuC3ttvfxA0KvDCtt+7cSsL7z1Z+rCGs676smlh9K1QANHkknBNrk3wZIWh0PpxOFxadhOsR6uV1RyQX/Ea5tIRqCIvOKSm4Rsatqxy4W5lx85tRB2YMHj+yVc3v+AI459ZbXx2DfzjTHNno2wf89o7ATZA1RFh9SFoQYvYOwqevWQluhEj0GgqA+EePTAG0EMpmh/cEv78n7eY3EITUOITUy9TDymrqmKwBAKZM5A8Ev2L3kTwrENmcuRGiO4OnSPz6t/af1U9oqcPK7OE7bwAAAABJRU5ErkJggg==" width="20" height="36" alt="Skiddle" style="display:block;">
@@ -495,6 +496,51 @@
     </div>
   </section>
 
+  <!-- SUGGESTIONS -->
+  <section id="suggestions" style="background: var(--black2);">
+    <div class="inner">
+      <p class="section-label">Shape the night</p>
+      <h2>GOT A<br>SUGGESTION?</h2>
+      <p style="font-size:0.9rem; color:var(--white); max-width:560px; line-height:1.9; margin-bottom:0.75rem;">
+        Got a track or artist you want to hear? Drop it in below — we read every suggestion and use them to help steer the flavour of the night.
+      </p>
+      <p style="font-size:0.78rem; color:var(--grey); max-width:560px; line-height:1.8; margin-bottom:2.5rem;">
+        Suggestions aren't guaranteed to be played — we're not a jukebox — but if enough people want to hear something, we'll find a way to get it in. The more specific the better: artist, track, era, vibe.
+      </p>
+      <form id="suggestion-form" action="https://formspree.io/f/maqrzgjg" method="POST" style="max-width:560px;">
+        <div style="margin-bottom:1.25rem;">
+          <label for="suggestion" style="display:block; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--pink); margin-bottom:0.5rem;">Artist or track suggestion</label>
+          <input type="text" id="suggestion" name="suggestion" required
+            placeholder="e.g. Fontaines DC, Debaser by Pixies, anything 90s grunge…"
+            style="width:100%; background:var(--black); border:1px solid var(--border); border-radius:3px; padding:0.85rem 1rem; color:var(--white); font-family:'Space Mono',monospace; font-size:0.85rem; outline:none; transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div style="margin-bottom:1.75rem;">
+          <label for="message" style="display:block; font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--pink); margin-bottom:0.5rem;">Anything else for the DJ? <span style="color:var(--grey);">(optional)</span></label>
+          <textarea id="message" name="message" rows="3"
+            placeholder="Context, era, why it fits the night…"
+            style="width:100%; background:var(--black); border:1px solid var(--border); border-radius:3px; padding:0.85rem 1rem; color:var(--white); font-family:'Space Mono',monospace; font-size:0.85rem; outline:none; resize:vertical; transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='var(--pink)'" onblur="this.style.borderColor='var(--border)'"></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New TFA track suggestion" />
+        <input type="text" name="_gotcha" style="display:none" />
+        <button type="submit"
+          style="background:var(--pink); color:var(--black); font-family:'Space Mono',monospace; font-weight:700; font-size:0.85rem; letter-spacing:0.12em; text-transform:uppercase; border:none; padding:0.9rem 2.5rem; cursor:pointer; transition:background 0.2s;">
+          Send suggestion →
+        </button>
+        <p style="font-size:0.7rem; color:var(--grey); margin-top:0.75rem; letter-spacing:0.05em;">Your suggestion goes straight to the DJ. No spam, no sharing.</p>
+      </form>
+      <div id="suggestion-thanks" style="display:none; max-width:560px; border-left:3px solid var(--pink); padding:1.5rem; background:var(--black); margin-top:1rem;">
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--pink); margin-bottom:0.4rem;">NICE ONE.</p>
+        <p style="font-size:0.85rem; color:var(--white);">Suggestion received — we'll give it a listen before the night.</p>
+      </div>
+      <div id="suggestion-limit" style="display:none; max-width:560px; border-left:3px solid var(--grey); padding:1.5rem; background:var(--black); margin-top:1rem;">
+        <p style="font-family:'Bebas Neue',sans-serif; font-size:2rem; color:var(--white); margin-bottom:0.4rem;">HOLD TIGHT.</p>
+        <p style="font-size:0.85rem; color:var(--white);">We've had a massive response this month — suggestions are full for now. Check back next month, or message us on Instagram if it's urgent.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- MAILING LIST -->
   <section id="mailing">
     <div class="inner">
@@ -530,6 +576,34 @@
       }
       alert("You're on the list! We'll be in touch when the next date drops.");
       document.getElementById('email-input').value = '';
+    }
+
+    // Suggestion form — show thank you on success
+    const suggestionForm = document.getElementById('suggestion-form');
+    if (suggestionForm) {
+      suggestionForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(suggestionForm);
+        const response = await fetch(suggestionForm.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          suggestionForm.style.display = 'none';
+          document.getElementById('suggestion-thanks').style.display = 'block';
+        } else {
+          const json = await response.json().catch(() => ({}));
+          const isLimit = json.error && json.error.toLowerCase().includes('limit');
+          suggestionForm.style.display = 'none';
+          document.getElementById('suggestion-limit').style.display = 'block';
+          if (!isLimit) {
+            // Not a limit error — show the limit message anyway as it's friendlier than a generic error
+            document.getElementById('suggestion-limit').querySelector('p:last-child').textContent =
+              'Something went wrong on our end — try again later or message us on Instagram.';
+          }
+        }
+      });
     }
   </script>
 
