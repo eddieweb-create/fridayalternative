@@ -658,11 +658,6 @@
 
   <script>
     // ─────────────────────────────────────────
-    // PASTE YOUR VALUES HERE BEFORE UPLOADING:
-    const EO_API_KEY = 'eo_055ce0541ee190844f7c8423d4c943f9b6d26b63fae7a21430a7e9911e54339c';
-    const EO_LIST_ID = 'ee6c7308-9f8c-11f1-98b5-4587b6307abf';
-    // ─────────────────────────────────────────
-
     async function handleSignup() {
       const email = document.getElementById('email-input').value.trim();
       if (!email || !email.includes('@')) {
@@ -676,23 +671,13 @@
       btn.textContent = 'Hold on...';
 
       try {
-        const response = await fetch(
-          `https://emailoctopus.com/api/1.6/lists/${EO_LIST_ID}/contacts`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              api_key: EO_API_KEY,
-              email_address: email,
-              status: 'SUBSCRIBED'
-            })
-          }
-        );
+        const response = await fetch('https://formspree.io/f/maewzzvg', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email })
+        });
 
-        const data = await response.json();
-
-        if (response.ok || data.status === 'SUBSCRIBED' ||
-            (data.error && data.error.code === 'MEMBER_EXISTS_WITH_EMAIL_ADDRESS')) {
+        if (response.ok) {
           document.querySelector('.email-form').style.display = 'none';
           document.getElementById('signup-thanks').style.display = 'block';
         } else {
