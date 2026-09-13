@@ -110,9 +110,7 @@
       min-width: 48px;
     }
 
-    .skiddle-divider {
-      width: 1px; background: #ddd; flex-shrink: 0;
-    }
+    .skiddle-divider { width: 1px; background: #ddd; flex-shrink: 0; }
 
     .skiddle-text {
       background: #fff;
@@ -125,14 +123,11 @@
     }
 
     .skiddle-arrow {
-      background: var(--pink);
-      color: #fff;
-      padding: 0 0.8rem;
-      font-size: 1rem;
+      background: var(--pink); color: #fff;
+      padding: 0 0.8rem; font-size: 1rem;
       display: flex; align-items: center; justify-content: center;
     }
 
-    /* Smaller version for nav */
     .skiddle-btn-sm .skiddle-icon { padding: 0 0.55rem; min-width: 28px; }
     .skiddle-btn-sm .skiddle-text { font-size: 0.68rem; padding: 0.5rem 0.7rem; }
     .skiddle-btn-sm .skiddle-arrow { padding: 0 0.65rem; font-size: 0.9rem; }
@@ -145,13 +140,7 @@
       position: relative; overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute; inset: 0;
-    }
-    .hero-bg-placeholder {
-      width: 100%; height: 100%;
-      background: repeating-linear-gradient(45deg, #111 0px, #111 10px, #0d0d0d 10px, #0d0d0d 20px);
-    }
+    .hero-bg { position: absolute; inset: 0; }
 
     .hero-overlay {
       position: absolute; inset: 0;
@@ -160,15 +149,24 @@
 
     .hero-inner { position: relative; max-width: 1060px; margin: 0 auto; width: 100%; }
 
-    .hero-kicker {
+    .hero-birthday-shout {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 0.05em;
+      color: #FFD700;
+      margin-bottom: 0.4rem;
+      text-shadow:
+        0 0 8px rgba(255,215,0,0.9),
+        0 0 24px rgba(255,215,0,0.5),
+        0 0 60px rgba(255,215,0,0.2);
+    }
       font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--white); margin-bottom: 1rem;
       display: flex; align-items: center; gap: 0.8rem;
       text-shadow: 0 1px 4px rgba(0,0,0,0.8), 0 0 12px rgba(0,0,0,0.6);
     }
     .hero-kicker::before {
-      content: ''; display: inline-block; width: 32px; height: 1px;
-      background: var(--white);
+      content: ''; display: inline-block; width: 32px; height: 1px; background: var(--white);
     }
 
     h1 {
@@ -199,14 +197,10 @@
     }
     .pill-hot { border-color: var(--pink); color: var(--pink); }
 
-    /* Hero ticket button */
     .hero-ticket {
-      position: absolute;
-      top: 52%; left: 58%;
-      transform: translateY(-50%);
-      z-index: 10;
+      position: absolute; top: 52%; left: 58%;
+      transform: translateY(-50%); z-index: 10;
     }
-
     @media (max-width: 760px) { .hero-ticket { display: none; } }
 
     /* ── MARQUEE ── */
@@ -247,14 +241,12 @@
     }
     .social-strip-inner {
       max-width: 1060px; margin: 0 auto;
-      display: flex; align-items: center; gap: 1.5rem;
-      flex-wrap: wrap;
+      display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
       font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
     }
     .social-strip a {
       display: flex; align-items: center; gap: 0.5rem;
-      color: var(--white); text-decoration: none;
-      transition: opacity 0.2s;
+      color: var(--white); text-decoration: none; transition: opacity 0.2s;
     }
     .social-strip a:hover { opacity: 0.7; }
     .social-strip-divider { color: var(--border); }
@@ -263,8 +255,6 @@
       color: var(--white); font-size: 0.75rem; letter-spacing: 0.1em;
     }
     .social-strip-x em { font-style: italic; text-transform: none; letter-spacing: 0; color: var(--white); }
-
-    /* Brand colours on icons */
     .icon-instagram { color: #E1306C; }
     .icon-facebook  { color: #1877F2; }
     .icon-threads   { color: var(--white); }
@@ -275,15 +265,68 @@
       .social-strip-inner { gap: 1rem; }
       .social-strip-divider { display: none; }
     }
-    #dates { background: var(--black); }
 
+    /* ── DATES ── */
+    #dates { background: var(--black); }
     .next-date-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
 
+    .birthday-shout {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      letter-spacing: 0.05em;
+      color: var(--yellow, #FFD700);
+      margin-bottom: 0.25rem;
+      text-shadow:
+        0 0 8px rgba(255,215,0,0.9),
+        0 0 24px rgba(255,215,0,0.5),
+        0 0 60px rgba(255,215,0,0.2);
+      animation: flicker-gold 2s ease-out forwards;
+    }
+
+    @keyframes flicker-gold {
+      0%   { opacity: 0; }
+      10%  { opacity: 1; }
+      12%  { opacity: 0.3; }
+      14%  { opacity: 1; }
+      16%  { opacity: 0.5; }
+      18%  { opacity: 1; }
+      100% { opacity: 1; }
+    }
+    .birthday-headline {
+      margin-bottom: 2.5rem;
+    }
+    .birthday-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--pink); margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .birthday-eyebrow::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--pink); }
+    .birthday-h {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.88; letter-spacing: 0.03em;
+      color: var(--white);
+    }
+    .birthday-h span {
+      color: var(--pink);
+      text-shadow:
+        0 0 4px rgba(255,45,120,1),
+        0 0 16px rgba(255,45,120,0.6),
+        0 0 40px rgba(255,45,120,0.2);
+    }
+    .birthday-sub {
+      font-size: 0.82rem; color: var(--grey);
+      letter-spacing: 0.1em; margin-top: 0.75rem;
+      text-transform: uppercase;
+    }
+
     .date-stamp {
-      border: 1px solid var(--border); padding: 2.5rem; position: relative;
+      border: 1px solid var(--pink);
+      box-shadow: 0 0 20px rgba(255,45,120,0.15);
+      padding: 2.5rem; position: relative;
     }
     .date-stamp::before {
-      content: 'NEXT DATE';
+      content: '1ST BIRTHDAY';
       position: absolute; top: -0.6rem; left: 1.5rem;
       background: var(--black);
       font-size: 0.62rem; letter-spacing: 0.2em; color: var(--pink); padding: 0 0.5rem;
@@ -313,7 +356,6 @@
     #about { background: var(--black); padding-top: 1.5rem; }
 
     .photo-pile { position: relative; width: 100%; min-height: 680px; margin-top: 3rem; }
-
     .photo-card {
       position: absolute; background: #1a1a1a;
       padding: 8px 8px 32px;
@@ -378,9 +420,7 @@
     .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: 0.12em; color: var(--white); }
     .footer-logo span { color: var(--pink); }
     footer p { font-size: 0.65rem; color: #444; letter-spacing: 0.1em; text-transform: uppercase; }
-    .footer-social { display: flex; gap: 1.25rem; }
-    .footer-social a { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: #444; text-decoration: none; transition: color 0.2s; }
-    .footer-social a:hover { color: var(--pink); }
+    .footer-social { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 760px) {
@@ -402,9 +442,7 @@
       .photo-card img { width: 100%; height: 160px; object-fit: cover; }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .marquee-track { animation: none; }
-    }
+    @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
   </style>
 </head>
 <body>
@@ -436,11 +474,12 @@
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-inner">
-      <p class="hero-kicker">Warrington's most eclectic club night</p>
+      <p class="hero-birthday-shout">It's our birthday!!</p>
+      <p class="hero-kicker">One year of no filler — come celebrate</p>
       <h1>THE<br>FRIDAY<br><span class="alt">ALTER<br>NATIVE</span></h1>
       <p class="hero-tagline">Loud music &nbsp;·&nbsp; Dark room &nbsp;·&nbsp; No filler</p>
       <div class="hero-pills">
-        <span class="pill pill-hot">Next date — Fri 20th November</span>
+        <span class="pill pill-hot">🎂 1st Birthday — Fri 20th November</span>
         <span class="pill">Indie</span>
         <span class="pill">Alternative</span>
         <span class="pill">Post-punk</span>
@@ -497,6 +536,15 @@
   <section id="dates">
     <div class="inner">
       <p class="section-label">Upcoming</p>
+      <p class="birthday-shout">It's our birthday!!</p>
+
+      <!-- BIRTHDAY HEADLINE -->
+      <div class="birthday-headline">
+        <p class="birthday-eyebrow">One year. Still no filler.</p>
+        <div class="birthday-h">ONE YEAR.<br><span>STILL NO FILLER.</span></div>
+        <p class="birthday-sub">The Friday Alternative turns one — come help us celebrate.</p>
+      </div>
+
       <div class="next-date-block">
         <div class="date-stamp">
           <div class="date-tbc">FRI 20TH<br><span>NOV</span></div>
@@ -657,7 +705,6 @@
   </footer>
 
   <script>
-    // ─────────────────────────────────────────
     async function handleSignup() {
       const email = document.getElementById('email-input').value.trim();
       if (!email || !email.includes('@')) {
@@ -665,18 +712,15 @@
         document.getElementById('email-input').focus();
         return;
       }
-
       const btn = document.querySelector('.email-form button');
       btn.disabled = true;
       btn.textContent = 'Hold on...';
-
       try {
         const response = await fetch('https://formspree.io/f/maewzzvg', {
           method: 'POST',
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: email })
         });
-
         if (response.ok) {
           document.querySelector('.email-form').style.display = 'none';
           document.getElementById('signup-thanks').style.display = 'block';
@@ -692,16 +736,13 @@
       }
     }
 
-    // Suggestion form — show thank you on success
     const suggestionForm = document.getElementById('suggestion-form');
     if (suggestionForm) {
       suggestionForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         const data = new FormData(suggestionForm);
         const response = await fetch(suggestionForm.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
+          method: 'POST', body: data, headers: { 'Accept': 'application/json' }
         });
         if (response.ok) {
           suggestionForm.style.display = 'none';
@@ -712,7 +753,6 @@
           suggestionForm.style.display = 'none';
           document.getElementById('suggestion-limit').style.display = 'block';
           if (!isLimit) {
-            // Not a limit error — show the limit message anyway as it's friendlier than a generic error
             document.getElementById('suggestion-limit').querySelector('p:last-child').textContent =
               'Something went wrong on our end — try again later or message us on Instagram.';
           }
